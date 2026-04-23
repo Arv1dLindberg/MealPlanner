@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MealPlanner.Data;
 using MealPlanner.Models;
+using System.Security.Claims;
 
 namespace MealPlanner.Pages.Recipes
 {
@@ -23,7 +24,11 @@ namespace MealPlanner.Pages.Recipes
 
         public async Task OnGetAsync()
         {
-            Recipe = await _context.Recipes.ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            Recipe = await _context.Recipes
+                .Where(r => r.UserId == userId)
+                .ToListAsync();
         }
     }
 }
