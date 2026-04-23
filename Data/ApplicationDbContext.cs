@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MealPlanner.Models;
 
 namespace MealPlanner.Data
 {
@@ -9,5 +10,6 @@ namespace MealPlanner.Data
             : base(options)
         {
         }
+        public DbSet<Recipe> Recipes { get; set; }
     }
 }
