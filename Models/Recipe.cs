@@ -10,5 +10,6 @@ namespace MealPlanner.Models
         public string Description { get; set; }
         public string Ingredients { get; set; }
         public string Instructions { get; set; }
+        public string UserId { get; set; }
     }
 }
