@@ -11,5 +11,6 @@ namespace MealPlanner.Data
         {
         }
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Meal> Meals { get; set; }
     }
 }
