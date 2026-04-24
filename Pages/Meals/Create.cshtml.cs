@@ -13,28 +13,45 @@ namespace MealPlanner.Pages.Meals
 {
     public class CreateModel : PageModel
     {
-        private readonly MealPlanner.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CreateModel(MealPlanner.Data.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
-        }
-
-        public IActionResult OnGet()
-        {
-            return Page();
         }
 
         [BindProperty]
         public Meal Meal { get; set; } = default!;
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+        public SelectList? RecipeOptions { get; set; }
+
+        public IActionResult OnGet()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            RecipeOptions = new SelectList(
+                _context.Recipes.Where(r => r.UserId == userId),
+                "Id",
+                "Name"
+            );
+
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             Meal.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (!ModelState.IsValid)
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                RecipeOptions = new SelectList(
+                    _context.Recipes.Where(r => r.UserId == userId),
+                    "Id",
+                    "Name"
+                );
+
                 return Page();
             }
 

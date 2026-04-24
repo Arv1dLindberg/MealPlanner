@@ -22,6 +22,7 @@ namespace MealPlanner.Pages.RandomMeal
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var meals = await _context.Meals
+                .Include(m => m.Recipe)
                 .Where(m => m.UserId == userId)
                 .ToListAsync();
 

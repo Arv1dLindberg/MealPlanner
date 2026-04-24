@@ -12,6 +12,18 @@ else
     <div class="card p-3">
         <h2>@Model.RandomMeal.Name</h2>
         <p><strong>Category:</strong> @Model.RandomMeal.Category</p>
+        <p><strong>Description:</strong> @Model.RandomMeal.Description</p>
+        <p><strong>Notes:</strong> @Model.RandomMeal.Notes</p>
+
+        @if (Model.RandomMeal.Recipe != null)
+        {
+            <p>
+                <strong>Recipe:</strong>
+                <a asp-page="/Recipes/Details" asp-route-id="@Model.RandomMeal.Recipe.Id">
+                    @Model.RandomMeal.Recipe.Name
+                </a>
+            </p>
+        }
     </div>
 }
 
