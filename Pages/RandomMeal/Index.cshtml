@@ -1,0 +1,18 @@
+﻿@page
+@model MealPlanner.Pages.RandomMeal.IndexModel
+
+<h1>Random Meal</h1>
+
+@if (Model.RandomMeal == null)
+{
+    <p>No meals found. Add meals first.</p>
+}
+else
+{
+    <div class="card p-3">
+        <h2>@Model.RandomMeal.Name</h2>
+        <p><strong>Category:</strong> @Model.RandomMeal.Category</p>
+    </div>
+}
+
+<a asp-page="/RandomMeal/Index" class="btn btn-primary mt-3">Randomize again</a>
