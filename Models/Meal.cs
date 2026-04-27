@@ -11,8 +11,6 @@ namespace MealPlanner.Models
 
         public string? Category { get; set; }
 
-        public string? Description { get; set; }
-
         public string? Notes { get; set; }
 
         public int? RecipeId { get; set; }

@@ -31,6 +31,7 @@ namespace MealPlanner.Pages.RandomMeal
                 var random = new System.Random();
                 RandomMeal = meals[random.Next(meals.Count)];
             }
+
         }
     }
 }
