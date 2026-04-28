@@ -23,9 +23,17 @@ namespace MealPlanner.Pages.Meals
 
         [BindProperty]
         public Meal Meal { get; set; } = default!;
+        public SelectList? RecipeOptions { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            RecipeOptions = new SelectList(
+               _context.Recipes.Where(r => r.UserId == userId),
+               "Id",
+               "Name"
+           );
             if (id == null)
             {
                 return NotFound();

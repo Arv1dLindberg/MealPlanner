@@ -31,6 +31,13 @@
                 <span asp-validation-for="Meal.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Meal.RecipeId" class="control-label">Recipe</label>
+                <select asp-for="Meal.RecipeId" asp-items="Model.RecipeOptions" class="form-control">
+                    <option value="">No recipe selected</option>
+                </select>
+                <span asp-validation-for="Meal.RecipeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
